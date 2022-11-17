@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { validateRequest } = require("twilio/lib/webhooks/webhooks");
 
 const path = "2021_D02/input.txt";
 const entries = fs.readFileSync(path).toString().split("\n");
