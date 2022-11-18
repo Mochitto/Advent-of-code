@@ -28,10 +28,44 @@ for (let countOfOnes of counterArray) {
 let targetCO2Binary = targetOxygenBinary.replace(/\d/g, (digit) =>
   digit == "1" ? "0" : "1"
 );
-console.log(targetOxygenBinary, targetCO2Binary);
+// console.log(targetOxygenBinary, targetCO2Binary);
 
-let oxygenRunnerUp = [];
-let co2RunnerUp = [];
+let matchOxygenScore = 0;
+let oxygenRunnerUp = entries.reduce((accummulator, currentVal, index) => {
+  let localScore = 0;
+  for (let i = 0; i < currentVal.length; i++) {
+    if (currentVal[i] == targetOxygenBinary[i]) {
+      localScore++;
+    }
+  }
 
-const filterFunction = (target, index, array) => {};
-while (oxygenRunnerUp.length !== 1 && co2RunnerUp.length !== 1) {}
+  if (localScore > matchOxygenScore) {
+    matchOxygenScore = localScore;
+    // console.log(currentVal);
+    return currentVal;
+  } else {
+    return accummulator;
+  }
+});
+let matchCO2Score = 0;
+let co2RunnerUp = entries.reduce((accummulator, currentVal, index) => {
+  let localScore = 0;
+  for (let i = 0; i < currentVal.length; i++) {
+    if (currentVal[i] == targetCO2Binary[i]) {
+      localScore++;
+    }
+  }
+
+  if (localScore > matchCO2Score) {
+    matchCO2Score = localScore;
+    // console.log(currentVal);
+    return currentVal;
+  } else {
+    return accummulator;
+  }
+});
+
+oxygenDecimal = parseInt(oxygenRunnerUp, 2);
+co2Decimal = parseInt(co2RunnerUp, 2);
+
+console.log(oxygenDecimal * co2Decimal);
